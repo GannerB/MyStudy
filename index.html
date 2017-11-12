@@ -1,0 +1,62 @@
+<!DOCTYPE HTML>
+<html>
+<body>
+<div style="text-align:center;">
+<button onclick="playAgain()">重播</button>
+<button onclick="playPause()">播放/暂停</button>
+<button onclick="makebig()">放大</button>
+<button onclick="makeok()">适中</button>
+<button onclick="makesmall()">缩小</button>
+</div>
+<script type="text/javascript"> 
+function cnvs_getCoordinates(e)
+{
+x=e.clientX;
+y=e.clientY;
+document.getElementById("xycoordinates").innerHTML="Coordinates: (" + x + "," + y + ")";
+}
+ 
+function cnvs_clearCoordinates()
+{
+document.getElementById("xycoordinates").innerHTML="";
+}
+</script>
+<video id="myvideo" src="other/mov_bbb.mp4" width="320" height="240" controls="controls" onmousemove="cnvs_getCoordinates(event)" onmouseout="cnvs_clearCoordinates()"></video>
+<script>
+var myV=document.getElementById("myvideo");
+function playAgain()
+{
+   myV.load();
+}
+function playPause()
+{
+  if (myV.paused)
+  myV.play();
+  else
+  myV.pause();
+}
+function makebig()
+{
+    myV.width=560;
+	myV.height=360;
+}
+function makeok()
+{
+    myV.width=320;
+	myV.height=240;
+}
+function makesmall()
+{
+    myV.width=260;
+	myV.height=140;
+}
+function drag(ev)
+{
+ev.dataTransfer.setData("Text",ev.target.id);
+}
+</script>
+<audio src="other/c.mp3" controls="controls" ></audio>
+
+<div id="xycoordinates"></div>
+</body>
+</html>
